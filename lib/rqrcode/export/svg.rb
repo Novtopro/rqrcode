@@ -35,13 +35,13 @@ module RQRCode
             x = r*module_size + offset
 
             next unless self.is_dark(c, r)
-            tmp << %{<rect width="#{module_size}" height="#{module_size}" x="#{x}" y="#{y}" style="fill:##{color}"/>}
+            tmp << %{<rect width="#{module_size}" height="#{module_size}" x="#{x}" y="#{y}" style="fill:##{color}; shape-rendering:#{shape_rendering.downcase}"/>}
           end
           result << tmp.join
         end
 
         if options[:fill]
-          result.unshift %{<rect width="#{dimension}" height="#{dimension}" x="0" y="0" style="fill:##{options[:fill]}"/>}
+          result.unshift %{<rect width="#{dimension}" height="#{dimension}" x="0" y="0" style="fill:##{options[:fill]}; shape-rendering:#{shape_rendering.downcase}"/>}
         end
 
         [xml_tag, open_tag, result, close_tag].flatten.join("\n")
